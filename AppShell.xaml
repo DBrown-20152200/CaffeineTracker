@@ -6,9 +6,18 @@
     xmlns:local="clr-namespace:CaffeineTracker"
     Title="CaffeineTracker">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <TabBar>
+        <ShellContent
+            Title="Tracker"
+            ContentTemplate="{DataTemplate local:TrackerPage}"
+            Route="TrackerPage" />
+        <ShellContent
+            Title="DrinkList"
+            ContentTemplate="{DataTemplate local:DrinkListPage}"
+            Route="DrinkListPage"/>
+        <ShellContent
+            Title="History"
+            ContentTemplate="{DataTemplate local:HistoryPage}"
+            Route="HistoryPage"/>
+    </TabBar>
 </Shell>
