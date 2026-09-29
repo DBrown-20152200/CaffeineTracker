@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CaffeineTracker.TrackerPage"
              Title="TrackerPage">
-    <Grid>
+    
+    <Grid Padding="15" HorizontalOptions="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -12,5 +13,31 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <Label x:Name="TotalCaffeine" 
+               Grid.Row="0"
+               Grid.Column="0"
+               Text="Total Caffeine: 0mg"
+               FontSize="24"/>
+
+        <ListView x:Name="DrinkList">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid RowDefinitions="*" ColumnDefinitions="*,*">
+                            <Label Text="{Binding drinkName}" 
+                                   Grid.Row="0" 
+                                   Grid.Column="0" 
+                                   HorizontalTextAlignment="Start"/>
+
+                            <Label Text="{Binding drinkCaffeine}" 
+                                   Grid.Row="0" 
+                                   Grid.Column="1"
+                                   HorizontalTextAlignment="End"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </ContentPage>

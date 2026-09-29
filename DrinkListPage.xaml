@@ -3,8 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CaffeineTracker.DrinkListPage"
              Title="DrinkListPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Drinks_Test" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <Grid RowDefinitions="60*, 5*, 10*, 25*" ColumnDefinitions="*, *, *">
+            <CollectionView x:Name="DrinksList" Grid.Row="0" Grid.Column="1">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="*" ColumnDefinitions="*, *">
+                            <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1"/>
+                            <Label Text="{Binding CaffeineContent}" Grid.Row="0" Grid.Column="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="Center">
+                <Label Text="Drink:"/>
+                <Entry x:Name="DrinkEntry"/>
+                <Label Text="Caffeine Amount:"/>
+                <Entry x:Name="CaffeineEntry"/>
+            </HorizontalStackLayout>
+            <Button x:Name="AddDrinkButton" Grid.Row="2" Grid.Column="1" Text="Add Drink" Clicked="AddDrinkButton_Clicked"/>
+        </Grid>
+    </ScrollView>
 </ContentPage>

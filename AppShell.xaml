@@ -12,7 +12,7 @@
             ContentTemplate="{DataTemplate local:TrackerPage}"
             Route="TrackerPage" />
         <ShellContent
-            Title="DrinkList"
+            Title="Drinks"
             ContentTemplate="{DataTemplate local:DrinkListPage}"
             Route="DrinkListPage"/>
         <ShellContent
