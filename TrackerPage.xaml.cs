@@ -18,4 +18,9 @@ public partial class TrackerPage : ContentPage
 		totalCaffeineContent += itemTapped.CaffeineContent;
         TotalCaffeine.Text = $"Total Caffeine: {totalCaffeineContent.ToString()}mg";
     }
+
+    private void TrackerPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+
+    }
 }
