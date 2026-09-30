@@ -3,27 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CaffeineTracker.DrinkListPage"
              Title="DrinkListPage">
-    <ScrollView>
-        <Grid RowDefinitions="60*, 5*, 10*, 25*" ColumnDefinitions="*, *, *">
-            <ListView x:Name="DrinksList" ItemTapped="DrinksList_ItemTapped" Grid.Row="0" Grid.Column="1">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid RowDefinitions="*" ColumnDefinitions="*, *">
-                                <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0"/>
-                                <Label Text="{Binding CaffeineContent}" Grid.Row="0" Grid.Column="1"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="Center">
-                <Label Text="Drink:"/>
-                <Entry x:Name="DrinkEntry"/>
-                <Label Text="Caffeine Amount:"/>
-                <Entry x:Name="CaffeineEntry"/>
-            </HorizontalStackLayout>
-            <Button x:Name="AddDrinkButton" Grid.Row="2" Grid.Column="1" Text="Add Drink" Clicked="AddDrinkButton_Clicked"/>
+    <Grid RowDefinitions="15*, 50*, 20*, 10*, 5*" 
+              ColumnDefinitions="*, *, *" 
+              MinimumWidthRequest="750">
+        <Label 
+               Grid.Row="0"
+               Grid.Column="1"
+               Text="Drinks List"
+               FontSize="24"
+               HorizontalTextAlignment="Center"/>
+        <ListView x:Name="DrinksList" ItemTapped="DrinksList_ItemTapped" Grid.Row="1" Grid.Column="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid RowDefinitions="*" ColumnDefinitions="*, *, *">
+                            <Label Text="{Binding Description}" Grid.Row="0" Grid.Column="0"/>
+                            <Label Text="{Binding CaffeineContent}" Grid.Row="0" Grid.Column="2"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid RowDefinitions="*" 
+              ColumnDefinitions="*, *, *, *, *" 
+              Grid.Row="2" 
+              Grid.Column="1" 
+              Padding="25">
+            <Label Text="Drink:" Grid.Row="0" Grid.Column="0"/>
+            <Entry x:Name="DrinkEntry" Grid.Row="0" Grid.Column="1"/>
+            <Label Text="Caffeine (mg):" Grid.Row="0" Grid.Column="3"/>
+            <Entry x:Name="CaffeineEntry" Grid.Row="0" Grid.Column="4"/>
         </Grid>
-    </ScrollView>
+        <Button x:Name="AddDrinkButton" 
+                Grid.Row="3" 
+                Grid.Column="1" 
+                Text="Add Drink" 
+                Clicked="AddDrinkButton_Clicked"/>
+    </Grid>
 </ContentPage>

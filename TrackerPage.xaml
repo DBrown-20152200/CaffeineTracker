@@ -4,36 +4,47 @@
              x:Class="CaffeineTracker.TrackerPage"
              Title="TrackerPage">
     
-    <Grid Padding="15" HorizontalOptions="Center">
+    <Grid HorizontalOptions="Center" WidthRequest="750">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="30*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="70*"/>
         </Grid.RowDefinitions>
 
         <Label x:Name="TotalCaffeine" 
-               Grid.Row="0"
-               Grid.Column="0"
+               Grid.Row="1"
+               Grid.Column="1"
                Text="Total Caffeine: 0mg"
-               FontSize="24"/>
+               FontSize="24"
+               HorizontalTextAlignment="Center"/>
 
-        <ListView x:Name="DrinkList">
+        <Label Text="Drink" 
+               FontSize="18" 
+               Grid.Row="2" 
+               Grid.Column="1"
+               HorizontalOptions="Start"
+               HorizontalTextAlignment="Center"/>
+
+        <Label Text="CaffeineContent (mg)" 
+               FontSize="18" 
+               Grid.Row="2" 
+               Grid.Column="1" 
+               HorizontalOptions="End"
+               HorizontalTextAlignment="Center"/>
+
+        <ListView x:Name="TrackerList" ItemTapped="TrackerList_ItemTapped" Grid.Row="3" Grid.Column="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid RowDefinitions="*" ColumnDefinitions="*,*">
-                            <Label Text="{Binding drinkName}" 
-                                   Grid.Row="0" 
-                                   Grid.Column="0" 
-                                   HorizontalTextAlignment="Start"/>
-
-                            <Label Text="{Binding drinkCaffeine}" 
-                                   Grid.Row="0" 
-                                   Grid.Column="1"
-                                   HorizontalTextAlignment="End"/>
+                        <Grid RowDefinitions="*, *" ColumnDefinitions="*, *" Padding="5">
+                            <Label Text="{Binding Description}" Grid.Row="1" Grid.Column="0"/>
+                            <Label Text="{Binding CaffeineContent}" Grid.Row="1" Grid.Column="2" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
