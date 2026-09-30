@@ -5,16 +5,18 @@
              Title="DrinkListPage">
     <ScrollView>
         <Grid RowDefinitions="60*, 5*, 10*, 25*" ColumnDefinitions="*, *, *">
-            <CollectionView x:Name="DrinksList" Grid.Row="0" Grid.Column="1">
-                <CollectionView.ItemTemplate>
+            <ListView x:Name="DrinksList" ItemTapped="DrinksList_ItemTapped" Grid.Row="0" Grid.Column="1">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid RowDefinitions="*" ColumnDefinitions="*, *">
-                            <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1"/>
-                            <Label Text="{Binding CaffeineContent}" Grid.Row="0" Grid.Column="1"/>
-                        </Grid>
+                        <ViewCell>
+                            <Grid RowDefinitions="*" ColumnDefinitions="*, *">
+                                <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0"/>
+                                <Label Text="{Binding CaffeineContent}" Grid.Row="0" Grid.Column="1"/>
+                            </Grid>
+                        </ViewCell>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </ListView.ItemTemplate>
+            </ListView>
             <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="Center">
                 <Label Text="Drink:"/>
                 <Entry x:Name="DrinkEntry"/>

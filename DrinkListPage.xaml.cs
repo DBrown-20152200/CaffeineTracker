@@ -7,27 +7,44 @@ public partial class DrinkListPage : ContentPage
 {
     public class Drinks
     {
-        public static string Name { get; set; }
-        public static int CaffeineContent { get; set; }
+        public string Name { get; set; }
+        public string CaffeineContent { get; set; }
 
-        public Drinks(string Name, int CaffeineContent)
+        public Drinks(string Name, string CaffeineContent)
         {
-            Drinks.Name = Name;
-            Drinks.CaffeineContent = CaffeineContent;
+            this.Name = Name;
+            this.CaffeineContent = CaffeineContent;
         }
     }
-    public static ObservableCollection<Drinks> drinksCollection = new ObservableCollection<Drinks>();
+
+    public class DataModel
+    {
+        public static ObservableCollection<Drinks> drinksCollection = new ObservableCollection<Drinks>();
+    }
 
     public DrinkListPage()
 	{
 		InitializeComponent();
+        DrinksList.ItemsSource = DataModel.drinksCollection;
     }
 
     private void AddDrinkButton_Clicked(object sender, EventArgs e)
     {
         if (String.IsNullOrEmpty(DrinkEntry.Text) != true && String.IsNullOrEmpty(CaffeineEntry.Text) != true)
         {
-            drinksCollection.Add(new Drinks(DrinkEntry.Text, int.Parse(CaffeineEntry.Text)));
+            DataModel.drinksCollection.Add(new Drinks(DrinkEntry.Text, (CaffeineEntry.Text + "mg")));
+            
         }
+
+        for (int i = 0; i < DataModel.drinksCollection.Count; i++)
+        {
+            Debug.WriteLine($"{DataModel.drinksCollection[i].Name} " +
+                $"{DataModel.drinksCollection[i].CaffeineContent}");
+        }
+    }
+    private void DrinksList_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        Drinks itemTapped = (Drinks) e.Item;
+        DataModel.drinksCollection.Remove(itemTapped);
     }
 }
