@@ -8,7 +8,7 @@ public partial class TrackerPage : ContentPage
 	{
 		InitializeComponent();
 		TrackerList.ItemsSource = DrinkListPage.drinksCollection;
-        TotalCaffeine.Text = $"Total Caffeine: {totalCaffeineContent.ToString()}";
+        TotalCaffeine.Text = $"Total Caffeine: {totalCaffeineContent.ToString()}mg";
 
     }
 
@@ -16,6 +16,6 @@ public partial class TrackerPage : ContentPage
     {
 		DrinkListPage.Drinks itemTapped = (DrinkListPage.Drinks)e.Item;
 		totalCaffeineContent += itemTapped.CaffeineContent;
-        TotalCaffeine.Text = $"Total Caffeine: {totalCaffeineContent.ToString()}";
+        TotalCaffeine.Text = $"Total Caffeine: {totalCaffeineContent.ToString()}mg";
     }
 }
