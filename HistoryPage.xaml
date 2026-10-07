@@ -2,27 +2,33 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CaffeineTracker.HistoryPage"
-             Title="HistoryPage">
+             Title="HistoryPage"
+             NavigatedTo="HistoryPage_NavigatedTo">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="70*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="70*"/>
+            <ColumnDefinition Width="15*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Text="Caffeine History" FontSize="24" Grid.Row="0" Grid.Column="1"/>
+        <Label Text="Caffeine History" 
+               FontSize="24" 
+               Grid.Row="0" 
+               Grid.Column="1" 
+               HorizontalOptions="Center"/>
 
-        <ListView x:Name="CaffeineHistoryList">
+        <ListView x:Name="CaffeineHistoryList" Grid.Row="1" Grid.Column="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid RowDefinitions="*" ColumnDefinitions="*, *, *">
-                            <Label Text="{Binding Description}" Grid.Row="0" Grid.Column="0"/>
-                            <Label Text="{Binding CaffeineContent}" Grid.Row="0" Grid.Column="2"/>
+                            <Label Text="{Binding DateConsumed}" Grid.Row="0" Grid.Column="0"/>
+                            <Label Text="{Binding CaffeineConsumed}" Grid.Row="0" Grid.Column="2"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

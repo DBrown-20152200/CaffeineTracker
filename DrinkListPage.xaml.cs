@@ -10,13 +10,10 @@ public partial class DrinkListPage : ContentPage
     {
         public string Description { get; set; }
         public int CaffeineContent { get; set; }
-        public DateTime Date { get; set; }
-
-        public Drinks(string Description, int CaffeineContent, DateTime date)
+        public Drinks(string Description, int CaffeineContent)
         {
             this.Description = Description;
             this.CaffeineContent = CaffeineContent;
-            Date = date;
         }
     }
 
@@ -65,7 +62,7 @@ public partial class DrinkListPage : ContentPage
     {
         if (String.IsNullOrEmpty(DrinkEntry.Text) != true && String.IsNullOrEmpty(CaffeineEntry.Text) != true)
         {
-            Drinks newDrink = new Drinks(DrinkEntry.Text, (int.Parse(CaffeineEntry.Text)), DateTime.Today);
+            Drinks newDrink = new Drinks(DrinkEntry.Text, (int.Parse(CaffeineEntry.Text)));
             if (drinksCollection.Contains(newDrink) == false)
             {
                 drinksCollection.Add(newDrink);
