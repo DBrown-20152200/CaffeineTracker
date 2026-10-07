@@ -64,9 +64,23 @@ public partial class DrinkListPage : ContentPage
     {
         if (String.IsNullOrEmpty(DrinkEntry.Text) != true && String.IsNullOrEmpty(CaffeineEntry.Text) != true)
         {
+            bool drinkAlreadyAdded = false;
+
             Drinks newDrink = new Drinks(DrinkEntry.Text, (int.Parse(CaffeineEntry.Text)));
-            drinksCollection.Add(newDrink);
-            FileData.SaveDrinks(drinksCollection);
+
+            foreach(Drinks drink in drinksCollection)
+            {
+                if(drink.Description == newDrink.Description)
+                {
+                    drinkAlreadyAdded = true;
+                }
+            }
+
+            if (drinkAlreadyAdded == false)
+            {
+                drinksCollection.Add(newDrink);
+                FileData.SaveDrinks(drinksCollection);
+            }
         }
     }
     private void DrinksList_ItemTapped(object sender, ItemTappedEventArgs e)

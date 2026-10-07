@@ -32,6 +32,10 @@ public partial class TrackerPage : ContentPage
         catch (Exception e)
         {
             Debug.WriteLine($"Exception caught: {e}");
+
+            drinksCollection.Add(new Drinks("Coke (375mL)", 35));
+            drinksCollection.Add(new Drinks("Espresso", 63));
+
             FileData.SaveDrinks(drinksCollection);
         }
         finally
@@ -42,8 +46,7 @@ public partial class TrackerPage : ContentPage
         InitializeComponent();
 		TrackerList.ItemsSource = drinksCollection;
         TotalCaffeine.Text = $"Total Caffeine: {totalCaffeineContent.ToString()}mg";
-        //drinksCollection.Add(new Drinks("Coke (375mL)", 35));
-        //drinksCollection.Add(new Drinks("Espresso", 63));
+
     }
 
     private void TrackerList_ItemTapped(object sender, ItemTappedEventArgs e)
