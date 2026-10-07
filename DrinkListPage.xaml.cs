@@ -63,10 +63,7 @@ public partial class DrinkListPage : ContentPage
         if (String.IsNullOrEmpty(DrinkEntry.Text) != true && String.IsNullOrEmpty(CaffeineEntry.Text) != true)
         {
             Drinks newDrink = new Drinks(DrinkEntry.Text, (int.Parse(CaffeineEntry.Text)));
-            if (drinksCollection.Contains(newDrink) == false)
-            {
-                drinksCollection.Add(newDrink);
-            }
+            drinksCollection.Add(newDrink);
         }
     }
     private void DrinksList_ItemTapped(object sender, ItemTappedEventArgs e)
