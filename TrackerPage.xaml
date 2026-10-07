@@ -21,7 +21,6 @@
         <Label x:Name="TotalCaffeine" 
                Grid.Row="1"
                Grid.Column="1"
-               Text="Total Caffeine: 0mg"
                FontSize="24"
                HorizontalTextAlignment="Center"/>
 

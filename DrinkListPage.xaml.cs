@@ -16,8 +16,21 @@ public partial class DrinkListPage : ContentPage
             this.CaffeineContent = CaffeineContent;
         }
     }
+    public class DailyCaffeine
+    {
+        public DateOnly DateConsumed { get; set; }
+        public int CaffeineConsumed { get; set; }
+
+        public DailyCaffeine(DateOnly DateConsumed, int CaffeineConsumed)
+        {
+            this.DateConsumed = DateConsumed;
+            this.CaffeineConsumed = CaffeineConsumed;
+        }
+    }
 
     public static ObservableCollection<Drinks> drinksCollection = new ObservableCollection<Drinks>();
+    public static ObservableCollection<DailyCaffeine> dailyCaffeineIntake =
+    new ObservableCollection<DailyCaffeine>();
 
     public DrinkListPage()
 	{
@@ -40,6 +53,7 @@ public partial class DrinkListPage : ContentPage
 
             File.WriteAllText(filePath, content_json);
         }
+
         public static ObservableCollection<Drinks> LoadDrinks(ObservableCollection<Drinks> list)
         {
             string fileName = "Drinks.json";
@@ -54,6 +68,37 @@ public partial class DrinkListPage : ContentPage
             if (list == null)
             {
                 list = new ObservableCollection<Drinks>();
+                Debug.WriteLine("New list created");
+            }
+            return list;
+        }
+        public static void SaveHistory(ObservableCollection<DailyCaffeine> list)
+        {
+            string fileName = "DrinksHistory.json";
+
+            var localFolder = FileSystem.Current.AppDataDirectory;
+            var filePath = Path.Combine(localFolder, fileName);
+            Debug.WriteLine(filePath);
+
+            var content_json = JsonConvert.SerializeObject(list);
+
+
+            File.WriteAllText(filePath, content_json);
+        }
+        public static ObservableCollection<DailyCaffeine> LoadHistory(ObservableCollection<DailyCaffeine> list)
+        {
+            string fileName = "DrinksHistory.json";
+            var localFolder = FileSystem.Current.AppDataDirectory;
+            var filePath = Path.Combine(localFolder, fileName);
+
+            Debug.WriteLine(filePath);
+
+            string content_json = File.ReadAllText(filePath);
+            list = JsonConvert.DeserializeObject<ObservableCollection<DailyCaffeine>>(content_json);
+
+            if (list == null)
+            {
+                list = new ObservableCollection<DailyCaffeine>();
                 Debug.WriteLine("New list created");
             }
             return list;

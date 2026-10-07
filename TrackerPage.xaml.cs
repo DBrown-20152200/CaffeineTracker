@@ -6,20 +6,7 @@ namespace CaffeineTracker;
 
 public partial class TrackerPage : ContentPage
 {
-    public class DailyCaffeine
-    {
-        public DateOnly DateConsumed {  get; set; }
-        public int CaffeineConsumed {  get; set; }
 
-        public DailyCaffeine(DateOnly DateConsumed, int CaffeineConsumed)
-        {
-            this.DateConsumed = DateConsumed;
-            this.CaffeineConsumed = CaffeineConsumed;
-        }
-    }
-
-    public static ObservableCollection<DailyCaffeine> dailyCaffeineIntake = 
-        new ObservableCollection<DailyCaffeine>();
 
 	public static int totalCaffeineContent = 0;
     public DateOnly currentDate = DateOnly.Parse(DateTime.Today.ToShortDateString());
@@ -28,6 +15,7 @@ public partial class TrackerPage : ContentPage
         try
         {
             drinksCollection = FileData.LoadDrinks(drinksCollection);
+            dailyCaffeineIntake = FileData.LoadHistory(dailyCaffeineIntake);
         }
         catch (Exception e)
         {
@@ -37,16 +25,34 @@ public partial class TrackerPage : ContentPage
             drinksCollection.Add(new Drinks("Espresso", 63));
 
             FileData.SaveDrinks(drinksCollection);
+            FileData.SaveHistory(dailyCaffeineIntake);
         }
         finally
         {
             drinksCollection = FileData.LoadDrinks(drinksCollection);
+            dailyCaffeineIntake = FileData.LoadHistory(dailyCaffeineIntake);
         }
 
         InitializeComponent();
-		TrackerList.ItemsSource = drinksCollection;
-        TotalCaffeine.Text = $"Total Caffeine: {totalCaffeineContent.ToString()}mg";
 
+		TrackerList.ItemsSource = drinksCollection;
+
+        if (dailyCaffeineIntake.Count == 0)
+        {
+            dailyCaffeineIntake.Add(new DailyCaffeine(currentDate, totalCaffeineContent));
+        }
+        else
+        {
+            for (int i = 0; i < dailyCaffeineIntake.Count; i++)
+            {
+                if (dailyCaffeineIntake[i].DateConsumed == currentDate)
+                {
+                    totalCaffeineContent = dailyCaffeineIntake[i].CaffeineConsumed;
+                }
+            }
+        }
+
+        TotalCaffeine.Text = $"Total Caffeine: {totalCaffeineContent}mg";
     }
 
     private void TrackerList_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -55,10 +61,7 @@ public partial class TrackerPage : ContentPage
 		totalCaffeineContent += itemTapped.CaffeineContent;
         TotalCaffeine.Text = $"Total Caffeine: {totalCaffeineContent.ToString()}mg";
 
-        if (dailyCaffeineIntake.Count == 0)
-        {
-            dailyCaffeineIntake.Add(new DailyCaffeine(currentDate, totalCaffeineContent));
-        }
+
         for (int i = 0; i < dailyCaffeineIntake.Count; i++)
         {
             if (dailyCaffeineIntake[i].DateConsumed == currentDate)
@@ -66,6 +69,7 @@ public partial class TrackerPage : ContentPage
                 dailyCaffeineIntake[i] = new DailyCaffeine(currentDate, totalCaffeineContent);
             }
         }
+        FileData.SaveHistory(dailyCaffeineIntake);
     }
 
     private void TrackerPage_NavigatedTo(object sender, NavigatedToEventArgs e)
