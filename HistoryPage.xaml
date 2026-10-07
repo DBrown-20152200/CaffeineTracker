@@ -3,8 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CaffeineTracker.HistoryPage"
              Title="HistoryPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="History_Test"/>
-    </VerticalStackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Text="Caffeine History" FontSize="24" Grid.Row="0" Grid.Column="1"/>
+
+        <ListView x:Name="CaffeineHistoryList">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid RowDefinitions="*" ColumnDefinitions="*, *, *">
+                            <Label Text="{Binding Description}" Grid.Row="0" Grid.Column="0"/>
+                            <Label Text="{Binding CaffeineContent}" Grid.Row="0" Grid.Column="2"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>

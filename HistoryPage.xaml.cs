@@ -6,4 +6,6 @@ public partial class HistoryPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+
 }
