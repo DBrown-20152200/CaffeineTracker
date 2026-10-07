@@ -1,4 +1,6 @@
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using static CaffeineTracker.DrinkListPage;
 
 namespace CaffeineTracker;
 
@@ -23,9 +25,25 @@ public partial class TrackerPage : ContentPage
     public DateOnly currentDate = DateOnly.Parse(DateTime.Today.ToShortDateString());
     public TrackerPage()
 	{
-		InitializeComponent();
-		TrackerList.ItemsSource = DrinkListPage.drinksCollection;
+        try
+        {
+            drinksCollection = FileData.LoadDrinks(drinksCollection);
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine($"Exception caught: {e}");
+            FileData.SaveDrinks(drinksCollection);
+        }
+        finally
+        {
+            drinksCollection = FileData.LoadDrinks(drinksCollection);
+        }
+
+        InitializeComponent();
+		TrackerList.ItemsSource = drinksCollection;
         TotalCaffeine.Text = $"Total Caffeine: {totalCaffeineContent.ToString()}mg";
+        //drinksCollection.Add(new Drinks("Coke (375mL)", 35));
+        //drinksCollection.Add(new Drinks("Espresso", 63));
     }
 
     private void TrackerList_ItemTapped(object sender, ItemTappedEventArgs e)

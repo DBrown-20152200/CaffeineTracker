@@ -27,9 +27,10 @@ public partial class DrinkListPage : ContentPage
 
     public static class FileData
     {
-        public static string fileName = "Drinks.json";
-        public static void Save(ObservableCollection<Drinks> list)
+        public static void SaveDrinks(ObservableCollection<Drinks> list)
         {
+            string fileName = "Drinks.json";
+
             var localFolder = FileSystem.Current.AppDataDirectory;
             var filePath = Path.Combine(localFolder, fileName);
             Debug.WriteLine(filePath);
@@ -39,8 +40,9 @@ public partial class DrinkListPage : ContentPage
 
             File.WriteAllText(filePath, content_json);
         }
-        public static ObservableCollection<Drinks> Load(ObservableCollection<Drinks> list)
+        public static ObservableCollection<Drinks> LoadDrinks(ObservableCollection<Drinks> list)
         {
+            string fileName = "Drinks.json";
             var localFolder = FileSystem.Current.AppDataDirectory;
             var filePath = Path.Combine(localFolder, fileName);
 
@@ -64,12 +66,14 @@ public partial class DrinkListPage : ContentPage
         {
             Drinks newDrink = new Drinks(DrinkEntry.Text, (int.Parse(CaffeineEntry.Text)));
             drinksCollection.Add(newDrink);
+            FileData.SaveDrinks(drinksCollection);
         }
     }
     private void DrinksList_ItemTapped(object sender, ItemTappedEventArgs e)
     {
         Drinks itemTapped = (Drinks) e.Item;
         drinksCollection.Remove(itemTapped);
+        FileData.SaveDrinks(drinksCollection);
     }
 
     private void DrinkListPage_NavigatedTo(object sender, NavigatedToEventArgs e)

@@ -43,9 +43,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid RowDefinitions="*, *" ColumnDefinitions="*, *" Padding="5">
-                            <Label Text="{Binding Description}" Grid.Row="1" Grid.Column="0"/>
-                            <Label Text="{Binding CaffeineContent}" Grid.Row="1" Grid.Column="2" HorizontalTextAlignment="Center"/>
+                        <Grid RowDefinitions="*, *" ColumnDefinitions="*" Padding="5">
+                            <Label Text="{Binding Description}" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Start"/>
+                            <Label Text="{Binding CaffeineContent}" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
