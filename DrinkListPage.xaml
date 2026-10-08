@@ -2,9 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CaffeineTracker.DrinkListPage"
-             Title="DrinkListPage"
-             NavigatedTo="DrinkListPage_NavigatedTo">
-    
+             Title="DrinkListPage">
+
     <Grid MinimumWidthRequest="750" Padding="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25*"/>

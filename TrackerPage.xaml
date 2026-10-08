@@ -2,47 +2,46 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CaffeineTracker.TrackerPage"
-             Title="TrackerPage"
-             NavigatedTo="TrackerPage_NavigatedTo">
-    
-    <Grid HorizontalOptions="Center" WidthRequest="750">
+             Title="TrackerPage">
+
+    <Grid HorizontalOptions="Center" Padding="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*"/>
             <ColumnDefinition Width="40*"/>
             <ColumnDefinition Width="30*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
             <RowDefinition Height="15*"/>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="70*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
 
         <Label x:Name="TotalCaffeine" 
-               Grid.Row="1"
+               Grid.Row="0"
                Grid.Column="1"
                FontSize="24"
                HorizontalTextAlignment="Center"/>
 
         <Label Text="Drink" 
                FontSize="18" 
-               Grid.Row="2" 
+               Grid.Row="1" 
                Grid.Column="1"
                HorizontalOptions="Start"
                HorizontalTextAlignment="Center"/>
 
         <Label Text="CaffeineContent (mg)" 
                FontSize="18" 
-               Grid.Row="2" 
+               Grid.Row="1" 
                Grid.Column="1" 
                HorizontalOptions="End"
                HorizontalTextAlignment="Center"/>
 
-        <ListView x:Name="TrackerList" ItemTapped="TrackerList_ItemTapped" Grid.Row="3" Grid.Column="1">
+        <ListView x:Name="TrackerList" ItemTapped="TrackerList_ItemTapped" Grid.Row="2" Grid.Column="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid RowDefinitions="*, *" ColumnDefinitions="*" Padding="5">
+                        <Grid RowDefinitions="*, *" ColumnDefinitions="*">
                             <Label Text="{Binding Description}" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Start"/>
                             <Label Text="{Binding CaffeineContent}" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End"/>
                         </Grid>
@@ -50,5 +49,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Button x:Name="UndoButton" Text="Undo Entry" Clicked="UndoButton_Clicked" Grid.Row="3" Grid.Column="1"/>
     </Grid>
 </ContentPage>
