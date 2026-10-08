@@ -4,7 +4,7 @@
              x:Class="CaffeineTracker.DrinkListPage"
              Title="DrinkListPage">
 
-    <Grid MinimumWidthRequest="750" Padding="15">
+    <Grid Padding="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25*"/>
             <ColumnDefinition Width="50*"/>
@@ -13,16 +13,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="7.5*"/>
             <RowDefinition Height="7.5*"/>
-            <RowDefinition Height="40*"/>
+            <RowDefinition Height="45*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
+        
         <Label 
                Grid.Row="0"
                Grid.Column="1"
                Text="Drinks List"
-               FontSize="24"
+               FontSize="20"
                HorizontalTextAlignment="Center"/>
         <Label Text="Drinks"
                Grid.Row="1"
@@ -33,6 +33,7 @@
                Grid.Column="1"
                FontSize="18"
                HorizontalTextAlignment="End"/>
+        
         <ListView x:Name="DrinksList" ItemTapped="DrinksList_ItemTapped" Grid.Row="2" Grid.Column="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -45,6 +46,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        
         <Grid RowDefinitions="*" 
               ColumnDefinitions="*, *, *, *, *" 
               Grid.Row="3" 
@@ -54,6 +56,7 @@
             <Label Text="Caffeine (mg):" Grid.Row="0" Grid.Column="3" VerticalOptions="Center"/>
             <Entry x:Name="CaffeineEntry" Grid.Row="0" Grid.Column="4" HeightRequest="45"/>
         </Grid>
+        
         <Button x:Name="AddDrinkButton" 
                 Grid.Row="4" 
                 Grid.Column="1" 

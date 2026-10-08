@@ -3,20 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CaffeineTracker.HistoryPage"
              Title="HistoryPage">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="70*"/>
-        </Grid.RowDefinitions>
+    
+    <Grid Padding="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25*"/>
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="25*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="75*"/>
+        </Grid.RowDefinitions>
 
         <Label Text="Caffeine History" 
-               FontSize="24" 
+               FontSize="20" 
                Grid.Row="0" 
                Grid.Column="1" 
                HorizontalTextAlignment="Center"/>
