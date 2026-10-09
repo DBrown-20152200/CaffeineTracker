@@ -7,9 +7,9 @@ namespace CaffeineTracker;
 
 public partial class TrackerPage : ContentPage
 {
-	public static int totalCaffeineContent = 0;
+	public static float totalCaffeineContent = 0;
     public static DateOnly currentDate = DateOnly.Parse(DateTime.Today.ToString("yyyy-MM-dd"));
-    public static List<int> caffeineIntakeList = new List<int>();
+    public static List<float> caffeineIntakeList = new List<float>();
 
     public static void UpdateTotalCaffeine()
     {
@@ -54,6 +54,10 @@ public partial class TrackerPage : ContentPage
         {
             dailyCaffeineIntake.Add(new DailyCaffeine(currentDate, totalCaffeineContent));
         }
+        else if (dailyCaffeineIntake[dailyCaffeineIntake.Count-1].DateConsumed != currentDate)
+        {
+            dailyCaffeineIntake.Add(new DailyCaffeine(currentDate, totalCaffeineContent));
+        }
         else
         {
             for (int i = 0; i < dailyCaffeineIntake.Count; i++)
@@ -76,6 +80,7 @@ public partial class TrackerPage : ContentPage
         caffeineIntakeList.Add(itemTapped.CaffeineContent);
 
         UpdateTotalCaffeine();
+        
 
         TotalCaffeine.Text = $"Total Caffeine: {totalCaffeineContent.ToString()}mg";
         FileData.SaveHistory(dailyCaffeineIntake);

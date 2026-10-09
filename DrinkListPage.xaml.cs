@@ -1,6 +1,4 @@
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using Newtonsoft.Json;
 
 namespace CaffeineTracker;
 
@@ -9,8 +7,8 @@ public partial class DrinkListPage : ContentPage
     public class Drinks
     {
         public string Description { get; set; }
-        public int CaffeineContent { get; set; }
-        public Drinks(string Description, int CaffeineContent)
+        public float CaffeineContent { get; set; }
+        public Drinks(string Description, float CaffeineContent)
         {
             this.Description = Description;
             this.CaffeineContent = CaffeineContent;
@@ -19,9 +17,9 @@ public partial class DrinkListPage : ContentPage
     public class DailyCaffeine
     {
         public DateOnly DateConsumed { get; set; }
-        public int CaffeineConsumed { get; set; }
+        public float CaffeineConsumed { get; set; }
 
-        public DailyCaffeine(DateOnly DateConsumed, int CaffeineConsumed)
+        public DailyCaffeine(DateOnly DateConsumed, float CaffeineConsumed)
         {
             this.DateConsumed = DateConsumed;
             this.CaffeineConsumed = CaffeineConsumed;
@@ -46,7 +44,7 @@ public partial class DrinkListPage : ContentPage
         {
             bool drinkAlreadyAdded = false;
 
-            Drinks newDrink = new Drinks(DrinkEntry.Text, (int.Parse(CaffeineEntry.Text)));
+            Drinks newDrink = new Drinks(DrinkEntry.Text, (float.Parse(CaffeineEntry.Text)));
 
             foreach(Drinks drink in drinksCollection)
             {
